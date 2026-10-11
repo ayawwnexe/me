@@ -1,0 +1,896 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10110e">
+<title>ayawwn.exe — welcome to my brain</title>
+
+<style>
+:root {
+  --bg:#10110e; --panel:#191b16; --panel2:#20231c;
+  --text:#e8e9d9; --muted:#a4aa91; --lime:#c6f36a;
+  --red:#ff746b; --border:#464b3a; --pixel:monospace;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:76px; }
+body {
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--pixel); font-size:14px; line-height:1.45;
+  background-image:radial-gradient(#ffffff0b 1px,transparent 1px);
+  background-size:4px 4px;
+}
+body.secret {
+  --bg:#11152a; --panel:#191f3c; --panel2:#252c4b;
+  --lime:#ff9bd2; --red:#8de7ff; --border:#555b85;
+}
+a { color:var(--lime); text-decoration:none; }
+a:hover { text-decoration:underline; }
+button,input,textarea,select { font:inherit; }
+button {
+  background:var(--lime); color:#15170f;
+  border:2px solid var(--lime); padding:8px 11px;
+  cursor:pointer; font-weight:bold; box-shadow:3px 3px 0 #000;
+}
+button:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 #000; }
+button:active { transform:translate(2px,2px); box-shadow:none; }
+input,textarea,select {
+  width:100%; padding:9px; background:var(--bg);
+  color:var(--text); border:1px solid var(--border);
+}
+textarea { resize:vertical; min-height:80px; }
+img { max-width:100%; }
+.wrap { width:min(1000px,92%); margin:auto; }
+
+nav {
+  position:sticky; top:0; z-index:20;
+  background:#10110eec; border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+body.secret nav { background:#11152aec; }
+.navinner {
+  display:flex; justify-content:space-between; align-items:center;
+  gap:12px; padding:9px 0;
+}
+.logo { color:var(--lime); font-weight:bold; }
+.navlinks { display:flex; gap:12px; flex-wrap:wrap; font-size:12px; }
+.navlinks a { color:var(--text); }
+
+.hero { padding:48px 0 28px; }
+.kicker,.tag,.tiny { font-size:10px; letter-spacing:.7px; color:var(--muted); }
+h1,h2,h3,p { margin-top:0; }
+h1 {
+  font-size:clamp(38px,8vw,70px); line-height:1.04;
+  letter-spacing:-2px; margin:10px 0 14px;
+}
+h1 span { color:var(--lime); }
+h2 { font-size:clamp(22px,4vw,31px); line-height:1.15; margin-bottom:0; }
+h3 { font-size:16px; line-height:1.3; margin-bottom:8px; }
+p { color:#d0d3c2; margin-bottom:9px; }
+p:last-child { margin-bottom:0; }
+.hero-grid { display:grid; grid-template-columns:1.6fr .8fr; gap:20px; align-items:center; }
+.window { border:1px solid var(--border); background:var(--panel); box-shadow:5px 5px 0 #000; }
+.wintop {
+  display:flex; justify-content:space-between; align-items:center;
+  background:var(--panel2); border-bottom:1px solid var(--border);
+  padding:7px 10px; font-size:11px; gap:8px;
+}
+.winbody { padding:13px; }
+.blink { animation:blink 1.3s steps(2,start) infinite; }
+@keyframes blink { to { visibility:hidden; } }
+.pixelcard { border:2px dashed var(--border); padding:14px; background:var(--panel); transform:rotate(1deg); }
+.bigpixel { font-size:50px; text-align:center; line-height:1.2; margin:8px 0; }
+.stamp { display:inline-block; border:1px solid var(--lime); color:var(--lime); padding:3px 6px; font-size:9px; transform:rotate(-2deg); }
+.actions { display:flex; flex-wrap:wrap; gap:9px; margin-top:15px; }
+section { padding:23px 0; }
+.sectionhead { display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:13px; }
+.muted { color:var(--muted); }
+.grid2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.grid3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.card { background:var(--panel); border:1px solid var(--border); padding:14px; min-width:0; }
+.card h3 { color:var(--lime); }
+.label { font-size:9px; letter-spacing:.8px; color:var(--muted); text-transform:uppercase; margin-bottom:7px; }
+hr { border:0; border-top:1px dashed var(--border); margin:13px 0; }
+.pill { display:inline-block; border:1px solid var(--border); padding:3px 7px; font-size:10px; color:var(--muted); margin:2px 3px 0 0; }
+.moviecard { display:flex; flex-direction:column; gap:5px; }
+.moviecard .emoji { font-size:25px; }
+.moviecard p { font-size:12px; }
+.track { display:flex; align-items:center; gap:10px; }
+.tracknum { font-size:17px; color:var(--lime); min-width:25px; }
+.trackinfo { flex:1; min-width:0; }
+.trackinfo strong { display:block; }
+.trackinfo small { color:var(--muted); }
+.track a { font-size:11px; white-space:nowrap; }
+.thoughtbox { min-height:115px; display:flex; flex-direction:column; justify-content:center; }
+.thoughtbox blockquote { font-size:clamp(16px,3vw,22px); margin:8px 0; }
+.socialrow {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; border-bottom:1px dashed var(--border); padding:10px 0;
+}
+.socialrow:last-child { border:0; }
+.socialrow strong { color:var(--lime); }
+.socialrow a { white-space:nowrap; }
+.note { font-size:10px; color:var(--muted); }
+.guest-entry { border-left:2px solid var(--lime); padding:8px 10px; margin:10px 0; background:var(--panel2); overflow-wrap:anywhere; }
+.guest-entry small { color:var(--muted); }
+.photo-frame {
+  display:flex; justify-content:center; align-items:center;
+  min-height:200px; border:2px dashed var(--border);
+  background:var(--panel2); padding:12px;
+}
+.photo-frame img { display:block; max-width:100%; max-height:500px; object-fit:contain; }
+footer { border-top:1px solid var(--border); padding:20px 0; margin-top:20px; font-size:11px; color:var(--muted); }
+#toast {
+  position:fixed; bottom:16px; left:50%; transform:translateX(-50%);
+  background:var(--lime); color:#10110e; padding:10px 13px; z-index:200;
+  box-shadow:4px 4px 0 #000; display:none; max-width:90%; font-size:11px;
+}
+#secretPanel { display:none; margin-top:12px; }
+#secretPanel.open { display:block; }
+.pixelball { cursor:pointer; display:inline-block; user-select:none; }
+#systemLog { color:var(--lime); }
+
+/* Floating corner background music player */
+.bg-music {
+  position:fixed;
+  right:14px;
+  bottom:14px;
+  z-index:150;
+  width:min(310px, calc(100vw - 28px));
+  font-family:var(--pixel);
+}
+.bg-music-toggle {
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  text-align:left;
+  padding:11px 13px;
+  background:var(--panel);
+  color:var(--lime);
+  border:1px solid var(--lime);
+  box-shadow:4px 4px 0 #000;
+}
+.bg-music-toggle:hover {
+  background:var(--panel2);
+  color:var(--lime);
+}
+.music-dot {
+  display:inline-block;
+  margin-right:4px;
+  animation:musicPulse 1.5s ease-in-out infinite;
+}
+@keyframes musicPulse {
+  50% { opacity:.45; }
+}
+.bg-music-panel {
+  display:none;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-bottom:0;
+  padding:13px;
+  box-shadow:4px 0 0 #000;
+}
+.bg-music.open .bg-music-panel { display:block; }
+.bg-music-status {
+  font-size:11px;
+  color:var(--muted);
+  overflow-wrap:anywhere;
+  margin-bottom:10px;
+}
+.bg-music-panel label {
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:6px;
+}
+.bg-music-panel select {
+  font-size:12px;
+  margin-bottom:10px;
+}
+.bg-music-actions {
+  display:flex;
+  gap:8px;
+}
+.bg-music-actions button {
+  flex:1;
+  font-size:12px;
+}
+.bg-music-actions button.secondary {
+  background:var(--panel2);
+  color:var(--text);
+  border-color:var(--border);
+}
+.bg-music-hint {
+  color:var(--muted);
+  font-size:9px;
+  margin-top:10px;
+}
+@media(max-width:700px) {
+  .hero-grid,.grid2,.grid3 { grid-template-columns:1fr; }
+  .hero { padding-top:35px; }
+  h1 { letter-spacing:-1px; }
+  .navinner { align-items:flex-start; flex-direction:column; }
+  .navlinks { gap:10px; }
+  .sectionhead { align-items:flex-start; flex-direction:column; }
+  .pixelcard { max-width:360px; }
+  .bg-music { right:10px; bottom:10px; width:min(285px,calc(100vw - 20px)); }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; }
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <div class="wrap navinner">
+    <a class="logo" href="#top">ayawwn.exe</a>
+    <div class="navlinks">
+      <a href="#about">me</a>
+      <a href="#watchlist">screen</a>
+      <a href="#music">music</a>
+      <a href="#pokemon">pokemon</a>
+      <a href="#socials">find me</a>
+      <a href="#guestbook">guestbook</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="kicker">PERSONAL WEBSITE // VERSION 1.0</div>
+      <h1>Welcome to<br><span>my brain.</span></h1>
+      <p>I'm Ayawwn. Introverted yet chaotic, probably overthinking something and probably listening to music instead of fixing it.</p>
+      <p class="muted">Movie buff · Music addict · Sinnoh glazer · Friend application department</p>
+      <div class="actions">
+        <a href="#about"><button>enter website →</button></a>
+        <button onclick="randomThought()">roll the brain dice</button>
+      </div>
+      <p class="tiny" style="margin-top:15px"><span class="blink">■</span> STATUS: online-ish &nbsp; / &nbsp; TIME: questionable</p>
+    </div>
+    <div class="pixelcard">
+      <div class="label">CURRENT USER</div>
+      <div class="bigpixel pixelball" onclick="computerClick()">🖥️</div>
+      <div style="text-align:center">
+        <strong>AYAWNN</strong><br>
+        <span class="muted tiny">not a real operating system</span>
+        <p style="margin-top:12px"><span class="stamp">FRIEND APPLICATIONS OPEN</span></p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="sectionhead"><h2>01. about.txt</h2><span class="tag">WHO EVEN IS THIS GUY</span></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="label">THE SHORT VERSION</div>
+      <h3>I'm not mysterious. I just don't talk that much.</h3>
+      <p>Introverted yet chaotic. Movie buff, Manga+Comic nerd at times, Pokémon enjoyer and professional overthinker. I can yap about fictional people for hours, but describing myself? Absolutely not.</p>
+      <p>I like music, fandoms, edits, good conversations and watching movies to figure out what I actually like. Still working on the whole humanbeing thing.</p>
+    </div>
+    <div class="card">
+      <div class="label">USER MANUAL — READ AT YOUR OWN RISK</div>
+      <p>↳ May take fictional characters too seriously.</p>
+      <p>↳ Replies to the right notification at unreasonable speed.</p>
+      <p>↳ Sometimes moody. Usually not that deep. Occasionally, very deep.</p>
+      <p>↳ Accepts recommendations, memes, random messages and lore.</p>
+      <hr><p class="muted">No customer support. No warranty. No refunds.</p>
+    </div>
+  </div>
+</section>
+
+<section id="thoughts">
+  <div class="sectionhead"><h2>02. brain activity</h2><span class="tag">UNFILTERED, MOSTLY</span></div>
+  <div class="window">
+    <div class="wintop"><span>thoughts_not_for_submission.txt</span><span>● ● ●</span></div>
+    <div class="winbody thoughtbox">
+      <div class="label">CURRENT THOUGHT</div>
+      <blockquote id="thoughtText">My screen time report needs to learn some respect.</blockquote>
+      <div class="actions">
+        <button onclick="randomThought()">another one ↻</button>
+        <button onclick="personalThought()">the real thoughts</button>
+      </div>
+      <div id="personalThoughtBox" style="display:none;margin-top:12px">
+        <hr>
+        <p>Sometimes I wonder if people think about me as much as I think about them. Anyway, back to watching another four hour video about how Dexter could kill Joe Goldberg easily...</p>
+        <p class="note">That's enough emotional honesty for one section.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="watchlist">
+  <div class="sectionhead"><h2>03. the screen obsession</h2><span class="tag">FILMS / TV / COMICS</span></div>
+  <div class="label" style="margin-bottom:9px">TV SHOWS</div>
+  <div class="grid3">
+    <article class="card moviecard">
+      <div class="emoji">🩸</div><div class="label">THE COMFORT PROBLEM</div>
+      <h3>Dexter</h3>
+      <p>Dexter, Debra, Batista and Quinn deserve their own appreciation department. I love how Dexter can feel and be both human and inhuman at once.</p>
+      <div><span class="pill">Miami Metro</span><span class="pill">questionable choices</span></div>
+    </article>
+    <article class="card moviecard">
+      <div class="emoji">⚖️</div><div class="label">MAGIC MAN DEPARTMENT</div>
+      <h3>Better Call Saul</h3>
+      <p>Jimmy and Kim being soulmates. My goat Nacho and Lalo. A deeply flawed man making deeply consequential decisions. Cinema, honestly.</p>
+      <div><span class="pill">Jimmy McGill</span><span class="pill">Slippin' Jimmy</span></div>
+    </article>
+    <article class="card moviecard">
+      <div class="emoji">⚙️</div><div class="label">ARCANE CORNER</div>
+      <h3>Arcane</h3>
+      <p>Ekko, Jinx and Vi. The animation is so good it permanently raises your standards and ruins your evening.</p>
+      <div><span class="pill">Zaun</span><span class="pill">Piltover</span></div>
+    </article>
+    <article class="card moviecard">
+      <div class="emoji">😈</div><div class="label">THE OG</div>
+      <h3>Daredevil</h3>
+      <p>The original show. Hallway fights, moral crises and a man who desperately needs to take a day off.</p>
+    </article>
+  </div>
+
+  <div class="label" style="margin:17px 0 9px">FILMS & FILMMAKERS</div>
+  <div class="grid2">
+    <article class="card moviecard">
+      <div class="emoji">🔥</div><div class="label">INDIAN CINEMA</div>
+      <h3>Gangs of Wasseypur I & II</h3>
+      <p>Anurag Kashyap's crime saga. Family feuds, coal mafias, revenge and dialogue that stays with you. Both parts live rent-free in my head.</p>
+      <span class="pill">Anurag Kashyap</span>
+    </article>
+    <article class="card moviecard">
+      <div class="emoji">🎬</div><div class="label">DIRECTOR'S CORNER</div>
+      <h3>Denis Villeneuve</h3>
+      <p>One of my favourite filmmakers. The atmosphere, visuals and sheer scale of his films are something else. And yes, I'm already seated for Dune: Part Three.</p>
+      <span class="pill">Dune</span><span class="pill">cinema</span>
+    </article>
+  </div>
+
+  <div class="label" style="margin:17px 0 9px">COMICS & BOOKS</div>
+  <div class="grid2">
+    <article class="card moviecard">
+      <div class="emoji">🌙</div><div class="label">COMIC NERD ALERT</div>
+      <h3>Moon Knight</h3>
+      <p>Big Moon Knight comics fan. Ask me about Moon Knight and watch this page turn into a lecture.</p>
+    </article>
+    <article class="card moviecard">
+      <div class="emoji">📚</div><div class="label">BOOKSHELF</div>
+      <h3>To Kill a Mockingbird</h3>
+      <p>My favourite book. It's just a book I love.</p>
+    </article>
+  </div>
+  <p class="note" style="margin-top:12px">My taste is still evolving. The watchlist is a work in progress, not a definitive ranking of every film ever made.</p>
+</section>
+
+<section id="music">
+  <div class="sectionhead"><h2>04. soundtrack.exe</h2><span class="tag">THE ROTATION</span></div>
+  <div class="card">
+    <p class="muted">A few songs worth checking out. Click one to find it on YouTube.</p>
+    <div id="playlist"></div>
+  </div>
+  <p class="note" style="margin-top:9px">The corner player is for my three tracks. This list is just recommendations.</p>
+</section>
+
+<section id="pokemon">
+  <div class="sectionhead"><h2>05. Pokémon department</h2><span class="tag">SINNOH GLAZER TILL DEATH</span></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="bigpixel">🎮</div>
+      <h3>Can I pick a favourite?</h3>
+      <p>No. Next question.</p>
+      <p>Sinnoh has my loyalty, though. Favourite Pokémon undecided. Sinnoh appreciation not negotiable.</p>
+      <button onclick="pokemonSecret()">inspect suspicious Pokédex entry</button>
+      <div id="pokedex" style="display:none;margin-top:12px">
+        <hr><div class="label">ENTRY #404</div>
+        <p><strong>Species:</strong> Sinnoh Glazer</p>
+        <p><strong>Habitat:</strong> the DS era</p>
+        <p><strong>Ability:</strong> cannot shut up about Sinnoh</p>
+        <p><strong>Weakness:</strong> being asked to choose a favourite Pokémon</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="label">TRAINER PROFILE</div>
+      <h3>Looking for fellow trainers</h3>
+      <p>Pokémon fans, game nerds, anime people, casual players and anyone with strong opinions about their starter Pokémon: you're welcome here.</p>
+      <p class="muted">Just don't start a generation war in my guestbook. Or do. I'm not your dad.</p>
+    </div>
+  </div>
+</section>
+
+<section id="socials">
+  <div class="sectionhead"><h2>06. find me on the internet</h2><span class="tag">FRIEND APPLICATIONS OPEN</span></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>So, you wanna talk?</h3>
+      <p>If you've got nobody to talk to, you can message me. I might be awake at 3 AM too. Talk about movies, music, Pokémon, your day or literally anything.</p>
+      <p>Just don't be a creep 😭</p>
+    </div>
+    <div class="card">
+      <div class="socialrow">
+        <div><strong>Discord</strong><br><span class="muted tiny">random calls & fandoms</span></div>
+        <a href="https://discord.com/users/1077494228512428032" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+      </div>
+      <div class="socialrow">
+        <div><strong>Instagram</strong><br><span class="muted tiny">memes and whatever</span></div>
+        <a href="https://www.instagram.com/notreally.ayan/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      </div>
+      <div class="socialrow">
+        <div><strong>Letterboxd</strong><br><span class="muted tiny">movie thoughts</span></div>
+        <a href="https://boxd.it/hnXsj" target="_blank" rel="noopener noreferrer">Letterboxd ↗</a>
+      </div>
+      <div class="socialrow">
+        <div><strong>Serializd</strong><br><span class="muted tiny">TV show thoughts</span></div>
+        <a href="https://srlzd.com/u/Ayawwn" target="_blank" rel="noopener noreferrer">Serializd ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guestbook">
+  <div class="sectionhead"><h2>07. guestbook</h2><span class="tag">LEAVE SOME LORE</span></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>You've made it this far.</h3>
+      <p>Leave a recommendation, a thought, a meme in words or just say hi.</p>
+      <form id="guestForm">
+        <label class="label" for="guestName">NAME / ALIAS</label>
+        <input id="guestName" maxlength="40" placeholder="mysterious internet person" autocomplete="off">
+        <label class="label" for="guestMessage" style="display:block;margin-top:12px">YOUR MESSAGE</label>
+        <textarea id="guestMessage" maxlength="500" required placeholder="tell me something interesting..."></textarea>
+        <p class="note" style="margin:8px 0">No private information pls.</p>
+        <button type="submit">leave message ↗</button>
+      </form>
+    </div>
+    <div class="card">
+      <div class="label">VISITOR MESSAGES</div>
+      <div id="guestMessages"></div>
+      <button onclick="clearGuestbook()" style="margin-top:10px">clear local messages</button>
+      <p class="note" style="margin-top:12px">Messages are saved only in this browser. Other visitors can't see them. A shared guestbook needs a backend or database.</p>
+    </div>
+  </div>
+</section>
+
+<section id="extras">
+  <div class="sectionhead"><h2>08. suspicious activities</h2><span class="tag">CLICK THINGS. SOME MAY DO THINGS.</span></div>
+  <div class="grid3">
+    <div class="card">
+      <div class="label">BUTTON 001</div><h3>do not press</h3>
+      <button onclick="dontPress()">don't click this</button>
+    </div>
+    <div class="card">
+      <div class="label">BUTTON 002</div><h3>emergency music</h3>
+      <button onclick="emergency()">activate emergency</button>
+    </div>
+    <div class="card">
+      <div class="label">BUTTON 003</div><h3>secret mode</h3>
+      <button onclick="toggleSecret()">enter the weird timeline</button>
+    </div>
+  </div>
+  <div class="window" id="secretPanel" style="margin-top:12px">
+    <div class="wintop"><span>hidden_directory/secret.txt</span><span>ACCESS GRANTED</span></div>
+    <div class="winbody">
+      <h3>you found the secret corner.</h3>
+      <p>Jimmy McGill would absolutely have a website like this.</p>
+      <p>Dexter would inspect the source code. Denji would ask where the snacks are.</p>
+      <p class="muted">Okay, that's enough. Go talk to someone.</p>
+      <button onclick="closeSecret()">return to normal reality</button>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <div class="label">BONUS EASTER EGG</div>
+    <p>Try typing <strong>DEXTER</strong> anywhere on this page, or click the little computer in the hero a few times.</p>
+    <p class="tiny">The computer has been warned not to develop consciousness.</p>
+  </div>
+</section>
+
+<section id="photo">
+  <div class="sectionhead"><h2>09. one photo</h2><span class="tag">A LITTLE PIECE OF ME</span></div>
+  <div class="photo-frame">
+    <img src="photo_slot_01.jpg" alt="A photo from Ayawwn" loading="lazy">
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <span>© ayawwn.exe — made with questionable amounts of effort</span>
+      <span>best viewed while procrastinating</span>
+    </div>
+    <hr>
+    <p>Don't be a stranger. Don't be a creep. Drink some water.</p>
+    <span class="pixelball" onclick="computerClick()">[■]</span>
+    <span class="tiny"> system log: <span id="systemLog">everything is probably fine</span></span>
+  </div>
+</footer>
+
+<!-- Floating music player: one audio element means tracks cannot overlap -->
+<aside class="bg-music" id="bgMusic">
+  <div class="bg-music-panel" id="bgMusicPanel">
+    <p class="bg-music-status" id="bgMusicStatus" aria-live="polite">Nothing playing — choose a track.</p>
+
+    <label for="bgTrack">CHOOSE YOUR SOUNDTRACK</label>
+    <select id="bgTrack">
+      <option value="song1.mp3">Let It Happen</option>
+      <option value="song2.mp3">Bohemian Rhapsody</option>
+      <option value="song3.mp3">Money Trees</option>
+    </select>
+
+    <div class="bg-music-actions">
+      <button id="bgPlay" type="button">▶ play</button>
+      <button id="bgStop" class="secondary" type="button">■ stop</button>
+    </div>
+    <p class="bg-music-hint">Pick a track, press play, and let the soundtrack do its thing.</p>
+  </div>
+
+  <button class="bg-music-toggle" id="bgMusicToggle" type="button"
+    aria-expanded="false" aria-controls="bgMusicPanel">
+    <span><span class="music-dot">♫</span> background music</span>
+    <span id="bgMusicChevron">＋</span>
+  </button>
+
+  <audio id="bgAudio" preload="none"></audio>
+</aside>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const thoughts = [
+  "My screen time report needs to learn some respect.",
+  "I have 47 tabs open in my brain and one of them is playing music.",
+  "How am I real AND expected to do assignments?",
+  "I love being mysterious until someone asks me about myself.",
+  "The masculine urge to watch another movie instead of fixing my sleep schedule.",
+  "Somewhere between a deep conversation and sending the stupidest meme you've ever seen.",
+  "My personality is partly fictional characters and partly internet damage.",
+  "One notification from the right person and suddenly the day has a plot.",
+  "I came here to do one thing and now I'm reading about a movie released in 1974.",
+  "Sinnoh is peak. This is not a debate.",
+  "I need a six-month vacation twice a year.",
+  "Life is a side quest and I have forgotten the main objective.",
+  "Sometimes the best conversation is the one where nobody has to pretend.",
+  "The movie watchlist grows. The actual watchlist progress does not.",
+  "I am absolutely capable of making a normal decision. Just not today."
+];
+
+const songs = [
+  ["Let It Happen","Tame Impala"],
+  ["New Person, Same Old Mistakes","Tame Impala"],
+  ["Rocket Man","Elton John"],
+  ["Vienna","Billy Joel"],
+  ["Uptown Girl","Billy Joel"],
+  ["Basic Being Basic","Djo"],
+  ["End of Beginning","Djo"],
+  ["Charlie's Garden","Djo"],
+  ["Killer Queen","Queen"],
+  ["Under Pressure","Queen & David Bowie"],
+  ["Superchor","Oye Lucky! Lucky Oye! soundtrack"],
+  ["Can't Take My Eyes Off You","Frankie Valli"]
+];
+
+function toast(message) {
+  const t = document.getElementById("toast");
+  t.textContent = message;
+  t.style.display = "block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => t.style.display = "none", 2600);
+}
+
+function randomThought() {
+  const el = document.getElementById("thoughtText");
+  const current = el.textContent;
+  let next = thoughts[Math.floor(Math.random() * thoughts.length)];
+  if (thoughts.length > 1 && next === current) {
+    next = thoughts[(thoughts.indexOf(next) + 1) % thoughts.length];
+  }
+  el.textContent = next;
+  document.getElementById("personalThoughtBox").style.display = "none";
+}
+
+function personalThought() {
+  const el = document.getElementById("personalThoughtBox");
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+function pokemonSecret() {
+  const el = document.getElementById("pokedex");
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+function dontPress() {
+  const replies = [
+    "you were specifically told not to 😭",
+    "this is why we can't have nice things.",
+    "Debra Morgan would have some words for you.",
+    "the button has filed a complaint.",
+    "okay, now go explore the rest of the site."
+  ];
+  toast(replies[Math.floor(Math.random() * replies.length)]);
+}
+
+function emergency() {
+  document.getElementById("thoughtText").textContent =
+    "Emergency declared. Play literally anything by Billy Joel.";
+  document.getElementById("music").scrollIntoView({behavior:"smooth"});
+  document.getElementById("bgMusic").classList.add("open");
+  document.getElementById("bgMusicToggle").setAttribute("aria-expanded", "true");
+  document.getElementById("bgMusicChevron").textContent = "−";
+  toast("EMERGENCY SOUNDTRACK DEPLOYED 🎧");
+}
+
+function toggleSecret() {
+  document.body.classList.toggle("secret");
+  document.getElementById("secretPanel").classList.toggle("open");
+  toast(document.body.classList.contains("secret")
+    ? "alternate timeline unlocked" : "timeline restored");
+}
+
+function closeSecret() {
+  document.body.classList.remove("secret");
+  document.getElementById("secretPanel").classList.remove("open");
+}
+
+let computerClicks = 0;
+function computerClick() {
+  computerClicks++;
+  const messages = [
+    "hello there",
+    "still clicking?",
+    "this is getting concerning",
+    "okay, you found the computer easter egg. happy now?"
+  ];
+  document.getElementById("systemLog").textContent =
+    messages[Math.min(computerClicks - 1, messages.length - 1)];
+  if (computerClicks === 4) toast("achievement unlocked: professional button clicker");
+}
+
+let typed = "";
+document.addEventListener("keydown", e => {
+  if (e.key.length === 1 && /[a-z]/i.test(e.key)) {
+    typed = (typed + e.key.toUpperCase()).slice(-6);
+    if (typed === "DEXTER") {
+      document.body.classList.toggle("secret");
+      document.getElementById("secretPanel").classList.toggle("open");
+      toast("SURPRISE, MOTHERFU—");
+      typed = "";
+    }
+  }
+});
+
+function renderPlaylist() {
+  const root = document.getElementById("playlist");
+  songs.forEach((song, i) => {
+    const row = document.createElement("div");
+    row.className = "track";
+    row.style.padding = "10px 0";
+    if (i < songs.length - 1) row.style.borderBottom = "1px dashed var(--border)";
+
+    const num = document.createElement("div");
+    num.className = "tracknum";
+    num.textContent = String(i + 1).padStart(2, "0");
+
+    const info = document.createElement("div");
+    info.className = "trackinfo";
+
+    const title = document.createElement("strong");
+    title.textContent = song[0];
+
+    const artist = document.createElement("small");
+    artist.textContent = song[1];
+    info.append(title, artist);
+
+    const link = document.createElement("a");
+    link.href = "https://www.youtube.com/results?search_query=" +
+      encodeURIComponent(song[0] + " " + song[1]);
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "find track ↗";
+
+    row.append(num, info, link);
+    root.appendChild(row);
+  });
+}
+
+/* Background player logic */
+const bgMusic = document.getElementById("bgMusic");
+const bgMusicToggle = document.getElementById("bgMusicToggle");
+const bgMusicChevron = document.getElementById("bgMusicChevron");
+const bgTrack = document.getElementById("bgTrack");
+const bgAudio = document.getElementById("bgAudio");
+const bgPlay = document.getElementById("bgPlay");
+const bgStop = document.getElementById("bgStop");
+const bgMusicStatus = document.getElementById("bgMusicStatus");
+
+let currentTrack = "";
+
+function setMusicStatus(message) {
+  bgMusicStatus.textContent = message;
+}
+
+function updatePlayButton() {
+  bgPlay.textContent = bgAudio.paused ? "▶ play" : "Ⅱ pause";
+}
+
+function openMusicPanel() {
+  bgMusic.classList.add("open");
+  bgMusicToggle.setAttribute("aria-expanded", "true");
+  bgMusicChevron.textContent = "−";
+}
+
+function closeMusicPanel() {
+  bgMusic.classList.remove("open");
+  bgMusicToggle.setAttribute("aria-expanded", "false");
+  bgMusicChevron.textContent = "＋";
+}
+
+bgMusicToggle.addEventListener("click", () => {
+  if (bgMusic.classList.contains("open")) {
+    closeMusicPanel();
+  } else {
+    openMusicPanel();
+  }
+});
+
+async function playSelectedTrack() {
+  const selectedFile = bgTrack.value;
+  const selectedName = bgTrack.options[bgTrack.selectedIndex].text;
+
+  // If the selected track is already loaded, resume it instead of restarting.
+  if (currentTrack === selectedFile && bgAudio.src && bgAudio.src.endsWith("/" + selectedFile)) {
+    try {
+      await bgAudio.play();
+      setMusicStatus("Now playing: " + selectedName);
+      updatePlayButton();
+    } catch {
+      setMusicStatus("Couldn't play this track. Check the audio file.");
+      updatePlayButton();
+    }
+    return;
+  }
+
+  // Pause the old track and replace its source before playing the next one.
+  bgAudio.pause();
+  bgAudio.currentTime = 0;
+  bgAudio.removeAttribute("src");
+  bgAudio.load();
+
+  currentTrack = selectedFile;
+  bgAudio.src = selectedFile;
+  bgAudio.load();
+
+  try {
+    await bgAudio.play();
+    setMusicStatus("Now playing: " + selectedName);
+  } catch {
+    setMusicStatus("Couldn't play " + selectedName + ". Check that " + selectedFile + " exists.");
+  }
+  updatePlayButton();
+}
+
+bgTrack.addEventListener("change", () => {
+  // Changing the dropdown stops the current track but does not autoplay.
+  bgAudio.pause();
+  bgAudio.currentTime = 0;
+  bgAudio.removeAttribute("src");
+  bgAudio.load();
+  currentTrack = "";
+  updatePlayButton();
+  setMusicStatus("Selected: " + bgTrack.options[bgTrack.selectedIndex].text + " — press play.");
+});
+
+bgPlay.addEventListener("click", async () => {
+  if (!bgAudio.paused) {
+    bgAudio.pause();
+    updatePlayButton();
+    setMusicStatus("Paused.");
+    return;
+  }
+  await playSelectedTrack();
+});
+
+bgStop.addEventListener("click", () => {
+  bgAudio.pause();
+  bgAudio.currentTime = 0;
+  bgAudio.removeAttribute("src");
+  bgAudio.load();
+  currentTrack = "";
+  updatePlayButton();
+  setMusicStatus("Stopped. Choose a track whenever.");
+});
+
+bgAudio.addEventListener("ended", () => {
+  updatePlayButton();
+  setMusicStatus("Track finished. Choose another?");
+});
+
+bgAudio.addEventListener("error", () => {
+  updatePlayButton();
+  if (currentTrack) {
+    setMusicStatus("Audio file not found or unsupported. Check the filename and file type.");
+  }
+});
+
+/* Local guestbook */
+const STORAGE_KEY = "ayawwn_guestbook_v1";
+
+function getEntries() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function renderGuestbook() {
+  const root = document.getElementById("guestMessages");
+  root.replaceChildren();
+  const entries = getEntries();
+
+  if (entries.length === 0) {
+    const p = document.createElement("p");
+    p.className = "muted";
+    p.textContent = "no messages yet. be the first?";
+    root.appendChild(p);
+    return;
+  }
+
+  entries.slice().reverse().forEach(entry => {
+    const box = document.createElement("div");
+    box.className = "guest-entry";
+
+    const name = document.createElement("strong");
+    name.textContent = entry.name;
+
+    const date = document.createElement("small");
+    date.textContent = " · " + entry.date;
+
+    const message = document.createElement("p");
+    message.textContent = entry.message;
+    message.style.margin = "7px 0 0";
+
+    box.append(name, date, message);
+    root.appendChild(box);
+  });
+}
+
+document.getElementById("guestForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = document.getElementById("guestName").value.trim() ||
+    "anonymous internet person";
+  const message = document.getElementById("guestMessage").value.trim();
+  if (!message) return;
+
+  const entries = getEntries();
+  entries.push({
+    name: name.slice(0, 40),
+    message: message.slice(0, 500),
+    date: new Date().toLocaleDateString()
+  });
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries.slice(-50)));
+    document.getElementById("guestMessage").value = "";
+    renderGuestbook();
+    toast("message saved on this device 💾");
+  } catch {
+    toast("couldn't save. browser storage might be disabled.");
+  }
+});
+
+function clearGuestbook() {
+  if (!confirm("Clear guestbook messages saved in this browser?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  renderGuestbook();
+  toast("local guestbook cleared");
+}
+
+renderPlaylist();
+renderGuestbook();
+</script>
+</body>
+</html>
