@@ -66,6 +66,8 @@ p { margin:.9rem 0; }
 .placeholder-art.image-loaded > div { display:none; }
 .placeholder-art .placeholder-symbol { display:block; font-size:1.8rem; margin-bottom:.35rem; opacity:.7; }
 .photo-placeholder small { display:block; font-family:"Comic Sans MS", cursive; color:#8a806a; text-align:center; font-size:.65rem; margin-top:.45rem; }
+.photo-caption { position:absolute; left:5px; right:5px; bottom:5px; display:block; text-align:center; font-family:"Comic Sans MS", "Bradley Hand", cursive; font-size:.82rem; line-height:1; color:#6d5a32; font-weight:600; letter-spacing:.01em; transform:rotate(-1.5deg); pointer-events:none; }
+.photo-placeholder:nth-child(even) .photo-caption { transform:rotate(1.5deg); }
 .hero-prints .print-one { position:absolute; width:61%; height:52%; top:5%; left:1%; --tilt:-8deg; }
 .hero-prints .print-two { position:absolute; width:56%; height:49%; top:20%; right:0; --tilt:7deg; }
 .hero-prints .print-three { position:absolute; width:58%; height:48%; bottom:1%; left:18%; --tilt:-3deg; }
@@ -199,9 +201,9 @@ p { margin:.9rem 0; }
       </div>
       <div class="hero-prints" aria-label="Three replaceable photo placeholders">
         <span class="doodle star" style="top:3%;right:7%">✳</span><span class="doodle arrow" style="bottom:9%;right:3%">↶</span><span class="doodle" style="top:47%;left:-3%;font-size:1.5rem">✧</span>
-        <div class="photo-placeholder print-one"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="intro-01.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 01<br><small>replace with your image</small></div></div></div>
-        <div class="photo-placeholder print-two"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="intro-02.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 02<br><small>replace with your image</small></div></div></div>
-        <div class="photo-placeholder print-three"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="intro-03.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 03<br><small>replace with your image</small></div></div></div>
+        <div class="photo-placeholder print-one"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="intro-01.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 01<br><small>replace with your image</small></div></div><span class="photo-caption">nostalgia</span></div>
+        <div class="photo-placeholder print-two"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="intro-02.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 02<br><small>replace with your image</small></div></div><span class="photo-caption">chaos</span></div>
+        <div class="photo-placeholder print-three"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="intro-03.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 03<br><small>replace with your image</small></div></div><span class="photo-caption">favourite people</span></div>
       </div>
     </section>
     <div class="section-rule"></div>
@@ -214,7 +216,7 @@ p { margin:.9rem 0; }
           <p>I'm not the best at meeting new people. Sometimes I struggle to find the right words or end up making a simple conversation awkward. It's not that I don't want to talk to people. I just need a little time to get comfortable. Once I know you, though, getting me to shut up might be a different problem.</p>
           <p>I like to think I'm a good listener. People sometimes come to me for advice, which is nice. Whether I can follow my own advice is a completely different question.</p>
         </div>
-        <div class="photo-placeholder dexter-print reveal"><span class="washi"></span><div class="placeholder-art"><img class="photo-image" src="dexter-brian.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder<br><small>replace with your image</small></div></div></div>
+        <div class="photo-placeholder dexter-print reveal"><span class="washi"></span><div class="placeholder-art"><img class="photo-image" src="dexter-brian.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder<br><small>replace with your image</small></div></div><span class="photo-caption">dark thoughts</span></div>
       </div>
       <span class="doodle star" style="right:8%;bottom:7%">✦</span>
     </section>
@@ -227,10 +229,10 @@ p { margin:.9rem 0; }
         <p>I also like making things. Websites, little experiments, random ideas that somehow turn into actual projects. There's something satisfying about having an idea, working on it and eventually seeing it come to life. It doesn't have to be anything huge. I just like making things of my own.</p>
       </div>
       <div class="gallery" aria-label="Four replaceable photo placeholders">
-        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="kim-jimmy.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 01<br><small>replace with your image</small></div></div></div>
-        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="power-denji.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 02<br><small>replace with your image</small></div></div></div>
-        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="ash-pokemon.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 03<br><small>replace with your image</small></div></div></div>
-        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="daredevil-hallway.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 04<br><small>replace with your image</small></div></div></div>
+        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="kim-jimmy.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 01<br><small>replace with your image</small></div></div><span class="photo-caption">complicated</span></div>
+        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="power-denji.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 02<br><small>replace with your image</small></div></div><span class="photo-caption">idiots ♡</span></div>
+        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="ash-pokemon.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 03<br><small>replace with your image</small></div></div><span class="photo-caption">childhood</span></div>
+        <div class="photo-placeholder item"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="daredevil-hallway.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder 04<br><small>replace with your image</small></div></div><span class="photo-caption">no giving up</span></div>
       </div>
     </section>
     <section id="future">
@@ -256,7 +258,7 @@ p { margin:.9rem 0; }
           <p>Honesty matters a lot to me. I appreciate people who make an effort without having to be asked, and I don't really get along with people who are deliberately rude. I don't think being nice to someone should be that difficult.</p>
           <p>I'm also an overthinker. I can spend ages stuck in my own head, and sometimes I get a little too confident in my own understanding of things. I know I don't have everything figured out, even if I occasionally forget that.</p>
         </div>
-        <div class="photo-placeholder interstellar-print reveal"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="interstellar.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder<br><small>replace with your image</small></div></div></div>
+        <div class="photo-placeholder interstellar-print reveal"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="interstellar.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder<br><small>replace with your image</small></div></div><span class="photo-caption">infinity</span></div>
       </div>
       <div class="starscape" aria-hidden="true"><span style="top:10%;left:7%">✦</span><span style="top:60%;left:45%;animation-delay:-1s">✧</span><span style="top:80%;right:5%;animation-delay:-2s">✦</span><span style="top:15%;right:18%;animation-delay:-.5s">·</span></div>
     </section>
@@ -283,7 +285,7 @@ p { margin:.9rem 0; }
         <p>Thanks for stopping by!</p>
         <span class="closing-line">end scene. ✳</span>
       </div>
-      <div class="photo-placeholder closing-print reveal"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="beautiful-boy-ending.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder<br><small>replace with your image</small></div></div></div>
+      <div class="photo-placeholder closing-print reveal"><span class="tape"></span><div class="placeholder-art"><img class="photo-image" src="beautiful-boy-ending.jpg" alt="" loading="lazy" onload="this.parentElement.classList.add('image-loaded')" onerror="this.remove()"><div><span class="placeholder-symbol">▧</span>Photo placeholder<br><small>replace with your image</small></div></div><span class="photo-caption">hope</span></div>
     </section>
   </main>
   <footer class="site-footer">
